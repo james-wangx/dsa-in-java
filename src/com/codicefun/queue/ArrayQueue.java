@@ -1,4 +1,4 @@
-package chapter03.queue;
+package com.codicefun.queue;
 
 // 使用数组模拟队列，编写一个 ArrayQueue 类
 public class ArrayQueue {

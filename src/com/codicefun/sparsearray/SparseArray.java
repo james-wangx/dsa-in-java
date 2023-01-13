@@ -1,4 +1,4 @@
-package chapter03;
+package com.codicefun.sparsearray;
 
 public class SparseArray {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package chapter03.queue;
+package com.codicefun.queue;
 
 public class CircleArrayQueue {
     private final int maxSize;    // 队列的最大容量

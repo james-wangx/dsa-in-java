@@ -1,11 +1,11 @@
-package chapter03.queue;
+package com.codicefun.queue;
 
 import java.util.Scanner;
 
 public class Test {
 
     public static void main(String[] args) {
-        // ArrayQueue queue = new ArrayQueue(3);
+        // ArrayQueue com.codicefun.queue = new ArrayQueue(3);
         CircleArrayQueue queue = new CircleArrayQueue(6);
         char key; // 接收用户输入
         Scanner input = new Scanner(System.in);
