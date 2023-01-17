@@ -66,6 +66,11 @@ class SingleLinkedList {
         pos.next = node;
     }
 
+    /**
+     * 按照编号顺序添加节点
+     *
+     * @param node 新结点
+     */
     public void addByOrder(HeroNode node) {
         HeroNode pos = head;
 
@@ -109,6 +114,11 @@ class SingleLinkedList {
         System.out.printf("未找到编号 %d 的节点，不能修改", node.no);
     }
 
+    /**
+     * 根据编号删除节点
+     *
+     * @param no 编号
+     */
     public void delete(int no) {
         if (head.next == null) {
             System.out.println("链表为空～");
@@ -116,7 +126,7 @@ class SingleLinkedList {
         }
 
         HeroNode pos = head;
-        while (pos.next!= null) {
+        while (pos.next != null) {
             if (pos.next.no == no) {
                 pos.next = pos.next.next;
                 return;
