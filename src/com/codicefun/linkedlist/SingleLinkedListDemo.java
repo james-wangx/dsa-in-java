@@ -1,5 +1,7 @@
 package com.codicefun.linkedlist;
 
+import java.util.Stack;
+
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
         HeroNode hero1 = new HeroNode(1, "宋江", "及时雨");
@@ -22,20 +24,125 @@ public class SingleLinkedListDemo {
         System.out.println("链表内容：");
         list.list();
 
-        // 修改节点数据
-        list.update(new HeroNode(2, "小卢", "玉麒麟～"));
-        System.out.println("\n修改后的链表");
-        list.list();
+        System.out.println("链表内容倒序打印：");
+        reversePrint(list.getHead());
 
-        // 第二次修改
-        // list.update(new HeroNode(5, "哈", "ha"));
+        // System.out.println("倒序后：");
+        // // list.reverse();
+        // // list.list();
+        // SingleLinkedList reversedList = list.reverse();
+        // reversedList.list();
+        // System.out.println("原先的链表：");
+        // list.list();
+        //
+        // // 修改节点数据
+        // list.update(new HeroNode(2, "小卢", "玉麒麟～"));
+        // System.out.println("\n修改后的链表");
+        // list.list();
+        //
+        // // 第二次修改
+        // // list.update(new HeroNode(5, "哈", "ha"));
+        //
+        // // list.delete(1);
+        // // list.delete(2);
+        // // list.delete(3);
+        // list.delete(4);
+        // System.out.println("\n删除节点后的链表");
+        // list.list();
+        //
+        //
+        // System.out.println("有效结点个数：" + getLength(list.getHead()));
+        //
+        // System.out.println("倒数第 2 个节点是：" + getKndLast(list.getHead(), 2));
+    }
 
-        // list.delete(1);
-        // list.delete(2);
-        // list.delete(3);
-        list.delete(4);
-        System.out.println("\n删除节点后的链表");
-        list.list();
+    /**
+     * 获取到单链表的节点个数（如果是带头结点的链表，不统计头结点）
+     *
+     * @param head 链表的头结点
+     * @return 有效结点个数
+     */
+    public static int getLength(HeroNode head) {
+        if (head.next == null) {
+            return 0;
+        }
+
+        int length = 0;
+        HeroNode pos = head.next;
+        while (pos != null) {
+            length++;
+            pos = pos.next;
+        }
+
+        return length;
+    }
+
+    /**
+     * 查找单链表中的倒数第 k 个节点
+     *
+     * @param head 链表头节点
+     * @param k    倒数索引
+     * @return 倒数第 k 个节点
+     */
+    public static HeroNode getKndLast(HeroNode head, int k) {
+        if (head.next == null) {
+            throw new RuntimeException("链表为空");
+        }
+
+        int length = getLength(head);
+        if (k <= 0 || k > length) {
+            throw new RuntimeException("链表有效节点个数为：" + length);
+        }
+
+        HeroNode pos = head.next;
+        while (pos != null) {
+            if (length-- == k) {
+                return pos;
+            }
+            pos = pos.next;
+        }
+
+        return null;
+    }
+
+    /**
+     * 方式一：递归
+     *
+     * @param node 节点
+     */
+    public static void reversePrint(HeroNode node) {
+        if (node.next != null) {
+            reversePrint(node.next);
+        }
+
+        if (node.no == 0) {
+            return;
+        }
+
+        System.out.println(node);
+    }
+
+    /**
+     * 方式二：利用栈先进后出的特点
+     *
+     * @param head 头结点
+     */
+    public static void reversePrint2(HeroNode head) {
+        if (head.next == null) {
+            return;
+        }
+
+        Stack<HeroNode> stack = new Stack<>();
+        HeroNode pos = head.next;
+        while (pos != null) {
+            stack.push(pos); // 入栈
+            pos = pos.next;
+        }
+
+        // 出栈
+        while (stack.size() > 0) {
+            System.out.println(stack.pop());
+        }
     }
 }
 
@@ -45,6 +152,15 @@ public class SingleLinkedListDemo {
 class SingleLinkedList {
     // 先初始化一个头节点，头节点不要动，不存放具体的数据
     private final HeroNode head = new HeroNode(0, "", "");
+
+    /**
+     * 返回头节点
+     *
+     * @return 头节点
+     */
+    public HeroNode getHead() {
+        return head;
+    }
 
     /**
      * 添加一个节点
@@ -151,6 +267,52 @@ class SingleLinkedList {
             System.out.println(pos);
             pos = pos.next;
         }
+    }
+
+    /**
+     * 链表反转自身
+     */
+    public void reverseSelf() {
+        if (head.next == null) {
+            return;
+        }
+        if (head.next.next == null) {
+            return;
+        }
+
+        HeroNode prev;
+        HeroNode pos = head.next;
+        HeroNode next = pos.next;
+        pos.next = null;
+        while (next.next != null) {
+            prev = pos;
+            pos = next;
+            next = next.next;
+            pos.next = prev;
+        }
+
+        next.next = pos;
+        head.next = next;
+    }
+
+    /**
+     * 链表反转
+     *
+     * @return 一个新的反序的链表
+     */
+    public SingleLinkedList reverse() {
+        SingleLinkedList newList = new SingleLinkedList();
+        HeroNode newHead = newList.getHead();
+
+        HeroNode pos = head.next;
+        while (pos != null) {
+            HeroNode newNode = new HeroNode(pos.no, pos.name, pos.nickname);
+            newNode.next = newHead.next;
+            newHead.next = newNode;
+            pos = pos.next;
+        }
+
+        return newList;
     }
 }
 
