@@ -5,9 +5,9 @@ import java.util.Stack;
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
         HeroNode hero1 = new HeroNode(1, "宋江", "及时雨");
-        HeroNode hero2 = new HeroNode(2, "卢俊义", "玉麒麟");
-        HeroNode hero3 = new HeroNode(3, "吴用", "智多星");
-        HeroNode hero4 = new HeroNode(4, "林冲", "豹子头");
+        HeroNode hero2 = new HeroNode(6, "卢俊义", "玉麒麟");
+        HeroNode hero3 = new HeroNode(4, "吴用", "智多星");
+        HeroNode hero4 = new HeroNode(8, "林冲", "豹子头");
 
         SingleLinkedList list = new SingleLinkedList();
         // list.add(hero1);
@@ -21,11 +21,29 @@ public class SingleLinkedListDemo {
         list.addByOrder(hero3);
         list.addByOrder(hero3);
 
-        System.out.println("链表内容：");
+        System.out.println("链表1内容：");
         list.list();
 
-        System.out.println("链表内容倒序打印：");
-        reversePrint(list.getHead());
+        HeroNode hero5 = new HeroNode(3, "3", "3");
+        HeroNode hero6 = new HeroNode(7, "7", "7");
+        HeroNode hero7 = new HeroNode(2, "2", "2");
+        HeroNode hero8 = new HeroNode(5, "5", "5");
+
+        SingleLinkedList list2 = new SingleLinkedList();
+        list2.addByOrder(hero5);
+        list2.addByOrder(hero6);
+        list2.addByOrder(hero7);
+        list2.addByOrder(hero8);
+
+        System.out.println("\n链表2内容：");
+        list2.list();
+
+        SingleLinkedList newList = mergeList(list.getHead(), list2.getHead());
+        System.out.println("\n合并后链表内容：");
+        newList.list();
+
+        // System.out.println("链表内容倒序打印：");
+        // reversePrint(list.getHead());
 
         // System.out.println("倒序后：");
         // // list.reverse();
@@ -143,6 +161,33 @@ public class SingleLinkedListDemo {
         while (stack.size() > 0) {
             System.out.println(stack.pop());
         }
+    }
+
+    /**
+     * 按编号顺序合并两个链表
+     *
+     * @param head1 第一个链表头
+     * @param head2 第二个链表头
+     * @return 合并后的链表
+     */
+    public static SingleLinkedList mergeList(HeroNode head1, HeroNode head2) {
+        SingleLinkedList newList = new SingleLinkedList();
+
+        HeroNode pos1 = head1.next;
+        while (pos1 != null) {
+            HeroNode newPos = new HeroNode(pos1.no, pos1.name, pos1.nickname);
+            newList.addByOrder(newPos);
+            pos1 = pos1.next;
+        }
+
+        HeroNode pos2 = head2.next;
+        while (pos2 != null) {
+            HeroNode newPos = new HeroNode(pos2.no, pos2.name, pos2.nickname);
+            newList.addByOrder(newPos);
+            pos2 = pos2.next;
+        }
+
+        return newList;
     }
 }
 
