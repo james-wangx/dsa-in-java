@@ -1,7 +1,7 @@
 package com.codicefun.stack;
 
 public class Calculator {
-    public static String expression = "3+2*6-2/2+7";
+    public static String expression = "30+2*6-20/2+7";
     public static int result;
 
     // 创建两个栈，一个数栈，一个符号栈
@@ -9,12 +9,12 @@ public class Calculator {
     public static CalcStack operatorStack = new CalcStack(10);
 
     public static void main(String[] args) {
-        // 定义需要的相关变量
-        int index = 0; // 用于扫描
-        char ch; // 将每次扫描得到 char 保存到 ch
+        int index = 0; // 字符串索引，用于扫描
+        StringBuilder num = new StringBuilder();
 
-        do {
-            ch = expression.substring(index, index + 1).charAt(0);
+        while (true) {
+            // 将每次扫描得到 char 保存到 ch
+            char ch = expression.charAt(index);
             if (isOperator(ch)) {
                 if (!operatorStack.isEmpty() && (ch == '+' || ch == '-')) {
                     // 如果符号栈不为空，且新符号为 + 或 -，就将当前栈中的结果计算出来
@@ -24,11 +24,23 @@ public class Calculator {
                     operatorStack.push(ch);
                 }
             } else {
-                // 数字直接入数栈
-                numStack.push(ch - 48);
+                // // 数字直接入数栈
+                // numStack.push(ch - 48);
+                // 处理多位数
+                num.append(ch);
+                // 如果当前索引是最后一位，直接入数栈，退出循环
+                if (index == expression.length() - 1) {
+                    numStack.push(new Integer(num.toString()));
+                    break;
+                }
+                // 如果新字符是运算符，直接入数栈
+                if (isOperator(expression.charAt(index + 1))) {
+                    numStack.push(new Integer(num.toString()));
+                    num = new StringBuilder();
+                }
             }
             index++;
-        } while (index != expression.length());
+        }
 
         cal2Nums();
 
@@ -164,14 +176,5 @@ class CalcStack {
             System.out.print(stack[i] + " ");
         }
         System.out.println();
-    }
-
-    /**
-     * 查看栈顶的值
-     *
-     * @return 栈顶的值
-     */
-    public int peek() {
-        return stack[top];
     }
 }
