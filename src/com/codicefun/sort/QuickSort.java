@@ -14,7 +14,8 @@ public class QuickSort {
         }
 
         long start = System.currentTimeMillis();
-        quickSortMiddle(array, 0, array.length - 1);
+        // quickSortMiddle(array, 0, array.length - 1);
+        quickSortLeft(array, 0, array.length - 1);
         long end = System.currentTimeMillis();
         System.out.printf("排序时间: %.3fs\n", (end - start) / 1000.0);
 
@@ -67,6 +68,57 @@ public class QuickSort {
         quickSortMiddle(array, l + 1, right);
     }
 
+    /**
+     * 快速排序，基准值取数组最左边的数
+     *
+     * @param array 待排序的数组
+     * @param left  左索引
+     * @param right 右索引
+     */
+    public static void quickSortLeft(int[] array, int left, int right) {
+        if (left < right) {
+            int index = partition(array, left, right);
+            quickSortLeft(array, left, index - 1);
+            quickSortLeft(array, index + 1, right);
+        }
+    }
+
+    /**
+     * 数组分区
+     *
+     * @param array 待分区的数组
+     * @param left  左索引
+     * @param right 右索引
+     * @return 分区临界索引
+     */
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    public static int partition(int[] array, int left, int right) {
+        int pivot = left;
+        int index = pivot + 1;
+
+        for (int i = index; i <= right; i++) {
+            if (array[i] < array[pivot]) {
+                if (i != index) {
+                    swap(array, i, index);
+                }
+                index++;
+            }
+        }
+
+        if (pivot != index - 1) {
+            swap(array, pivot, index - 1);
+        }
+
+        return index - 1;
+    }
+
+    /**
+     * 数组交换元素
+     *
+     * @param array 待交换元素的数组
+     * @param left  左索引
+     * @param right 右索引
+     */
     private static void swap(int[] array, int left, int right) {
         int temp = array[left];
         array[left] = array[right];
