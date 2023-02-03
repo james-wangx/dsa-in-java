@@ -1,9 +1,9 @@
 package com.codicefun.sort;
 
 /**
- * 插入排序
+ * 希尔排序/缩小增量排序
  */
-public class InsertSort {
+public class ShellSort {
     static int count;
 
     public static void main(String[] args) {
@@ -16,31 +16,31 @@ public class InsertSort {
         }
 
         long start = System.currentTimeMillis();
-        insertSort(array);
+        shellSort(array);
         long end = System.currentTimeMillis();
         System.out.printf("排序时间: %.3fs\n", (end - start) / 1000.0);
         System.out.printf("移动了 %d 次", count);
     }
 
     /**
-     * 插入排序
+     * 希尔排序
      *
      * @param array 待排序的数组
      */
-    public static void insertSort(int[] array) {
+    public static void shellSort(int[] array) {
         int insertVal;
         int insertIndex;
 
-        for (int i = 1; i < array.length; i++) {
-            insertVal = array[i];
-            insertIndex = i - 1;
-            while (insertIndex >= 0 && insertVal < array[insertIndex]) {
-                array[insertIndex + 1] = array[insertIndex];
-                insertIndex--;
-                count++;
-            }
-            if (insertIndex + 1 != i) {
-                array[insertIndex + 1] = insertVal;
+        for (int gap = array.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < array.length; i++) {
+                insertVal = array[i];
+                insertIndex = i - gap;
+                while (insertIndex >= 0 && insertVal < array[insertIndex]) {
+                    array[insertIndex + gap] = array[insertIndex];
+                    insertIndex -= gap;
+                    count++;
+                }
+                array[insertIndex + gap] = insertVal;
             }
         }
     }
