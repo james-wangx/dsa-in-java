@@ -15,7 +15,6 @@ public class MergeSort {
         }
 
         long start = System.currentTimeMillis();
-        // quickSortMiddle(array, 0, array.length - 1);
         mergeSort(array, 0, array.length - 1, temp);
         long end = System.currentTimeMillis();
         System.out.printf("排序时间: %.3fs\n", (end - start) / 1000.0);
