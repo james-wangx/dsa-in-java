@@ -1,12 +1,25 @@
 package com.codicefun.tree;
 
-import java.util.Arrays;
-
 public class HeapSort {
     public static void main(String[] args) {
-        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
+        // 测试一下冒泡排序的速度 O(n^2)，给 80000 个数据，测试
+        // 创建 80000 个随机数的数组
+        int[] array = new int[80000];
 
-        heapSort(arr);
+        for (int i = 0; i < 80000; i++) {
+            array[i] = (int) (Math.random() * 8000000); // 生成一个 [0, 8000000] 范围的随机数
+        }
+
+        long start = System.currentTimeMillis();
+        // quickSortMiddle(array, 0, array.length - 1);
+        heapSort(array);
+        long end = System.currentTimeMillis();
+        System.out.printf("排序时间: %.3fs\n", (end - start) / 1000.0);
+
+        // 通过指定 VM 选项：-ea，启动断言
+        for (int i = 0; i < array.length - 1; i++) {
+            assert array[i] <= array[i + 1];
+        }
     }
 
     /**
@@ -20,13 +33,10 @@ public class HeapSort {
             adjustHeap(arr, i, arr.length);
         }
 
-        System.out.println(Arrays.toString(arr));
-
         for (int i = arr.length - 1; i > 0; i--) {
             swap(arr, 0, i);
             adjustHeap(arr, 0, i);
         }
-        System.out.println(Arrays.toString(arr));
     }
 
     /**
