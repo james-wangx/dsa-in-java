@@ -15,16 +15,50 @@ public class HuffmanCode {
 
     public static void main(String[] args) {
         String content = "i like like like java do you like a java";
-        byte[] contentBytes = content.getBytes();
-        List<Node> nodes = getNodes(contentBytes);
+        byte[] hc = huffmanZip(content.getBytes());
 
+        System.out.println(Arrays.toString(hc));
+    }
+
+    // 封装哈夫曼编码方法
+    public static byte[] huffmanZip(byte[] bytes) {
+        List<Node> nodes = getNodes(bytes);
         Node root = createHuffmanTree(nodes);
-        root.preOrder();
+        Map<Byte, String> hc = getCodes(root);
 
-        // 测试是否生成了对应的哈夫曼编码
-        // getCodes(root, "", sb);
-        Map<Byte, String> codes = getCodes(root);
-        System.out.println("哈夫曼编码表：" + codes);
+        return zip(bytes, hc);
+    }
+
+    /**
+     * 生成最终的哈夫曼编码
+     *
+     * @param bytes 与原始字符串对应的字符数组
+     * @param hc    哈夫曼编码集合
+     * @return 哈夫曼编码数组
+     */
+    private static byte[] zip(byte[] bytes, Map<Byte, String> hc) {
+        StringBuilder sb = new StringBuilder();
+
+        for (byte b : bytes) {
+            sb.append(hc.get(b));
+        }
+
+        // 将字符串转为字节数组
+        int len = (sb.length() + 7) / 8;
+        byte[] hb = new byte[len];
+        int index = 0; // 记录数组索引
+
+        for (int i = 0; i < sb.length(); i += 8) {
+            String substring;
+            if (i + 8 > sb.length()) {
+                substring = sb.substring(i);
+            } else {
+                substring = sb.substring(i, i + 8);
+            }
+            hb[index++] = (byte) Integer.parseInt(substring, 2);
+        }
+
+        return hb;
     }
 
     /**
