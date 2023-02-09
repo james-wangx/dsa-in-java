@@ -92,13 +92,29 @@ class HuffmanCode {
         // i 为字符串索引，j 为编码数组索引
         for (int i = 0, j = 0; j < len; i += 8, j++) {
             if (i + 8 > sb.length()) {
-                code[j] = (byte) Integer.parseInt(sb.substring(i), 2);
+                // 最后一个字节不做转换处理，直接放入编码本
+                codeMap.put(null, sb.substring(i));
             } else {
                 code[j] = (byte) Integer.parseInt(sb.substring(i, i + 8), 2);
             }
         }
 
         return code;
+    }
+
+    /**
+     * 编码
+     *
+     * @param bytes 原始字节数组
+     * @return 编码后的字节数组
+     */
+    private static byte[] code(byte[] bytes) {
+        HashMap<Byte, Integer> frequency = getByteFrequency(bytes);
+        List<Node> nodeList = getNodeList(frequency);
+        Node rootNode = HuffmanTree.createTree(nodeList);
+        createCodeMap(rootNode, "", new StringBuilder());
+
+        return getCode(bytes);
     }
 
     /**
@@ -133,14 +149,12 @@ class HuffmanCode {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < codes.length; i++) {
-            String str;
+            String str = Integer.toBinaryString(codes[i] | 0x100);
             String format;
             if (i == codes.length - 1) {
-                // 如果是最后一个字节，不需要补位
-                str = Integer.toBinaryString(codes[i]);
-                format = str;
+                // 如果是最后一个字节，不需要转换，直接从编码本中取出
+                format = codeMap.get(null);
             } else {
-                str = Integer.toBinaryString(codes[i] | 0x100);
                 format = str.substring(str.length() - 8);
             }
             sb.append(format);
