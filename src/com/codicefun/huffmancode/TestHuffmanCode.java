@@ -59,4 +59,11 @@ public class TestHuffmanCode {
         HuffmanCode.zipFile(srcPath, desPath);
     }
 
+    @Test
+    public void testUnzip() {
+        String srcPath = "/tmp/genact.log.hz";
+        String desPath = "/tmp/genact2.log";
+        HuffmanCode.unzipFile(srcPath, desPath);
+    }
+
 }

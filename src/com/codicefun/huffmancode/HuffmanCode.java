@@ -1,9 +1,6 @@
 package com.codicefun.huffmancode;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -227,6 +224,28 @@ class HuffmanCode {
             }
         } catch (IOException e) {
             System.out.println("zip fail");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 解压文件
+     *
+     * @param srcPath 源文件路径
+     * @param desPath 解压文件路径
+     */
+    public static void unzipFile(String srcPath, String desPath) {
+        try (FileInputStream fis = new FileInputStream(srcPath);
+             ObjectInputStream ois = new ObjectInputStream(fis);
+             FileWriter fw = new FileWriter(desPath);
+             BufferedWriter br = new BufferedWriter(fw)) {
+            byte[] codes = (byte[]) ois.readObject();
+            codeMap = (HashMap<Byte, String>) ois.readObject();
+            String content = decode(codes);
+            br.write(content);
+            System.out.println("unzip success");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("unzip fail");
             e.printStackTrace();
         }
     }
