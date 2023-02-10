@@ -1,5 +1,9 @@
 package com.codicefun.huffmancode;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -200,5 +204,30 @@ class HuffmanCode {
         String binaryString = getBinaryString(codes);
 
         return getContent(binaryString);
+    }
+
+    /**
+     * 压缩文件
+     *
+     * @param srcPath 源文件路径
+     * @param desPath 压缩路径
+     */
+    public static void zipFile(String srcPath, String desPath) {
+        try (FileInputStream fis = new FileInputStream(srcPath);
+             FileOutputStream fos = new FileOutputStream(desPath);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            byte[] buf = new byte[fis.available()];
+            if (fis.read(buf) != -1) {
+                byte[] codes = code(buf);
+                oos.writeObject(codes);
+                oos.writeObject(codeMap);
+                System.out.println("zip success");
+            } else {
+                System.out.println("zip fail");
+            }
+        } catch (IOException e) {
+            System.out.println("zip fail");
+            e.printStackTrace();
+        }
     }
 }
