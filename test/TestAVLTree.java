@@ -8,8 +8,14 @@ public class TestAVLTree {
     @Test
     public void testHeight() {
         tree.createTree(arr);
-        assert tree.height() == 4;
-        assert tree.leftHeight() == 1;
-        assert tree.rightHeight() == 3;
+        assert tree.height() == 3;
+        assert tree.leftHeight() == 2;
+        assert tree.rightHeight() == 2;
+    }
+
+    @Test
+    public void testAdd() {
+        tree.createTree(arr);
+        assert tree.infixOrder().equals("3 4 5 6 7 8 ");
     }
 }

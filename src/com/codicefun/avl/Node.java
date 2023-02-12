@@ -46,6 +46,24 @@ public class Node {
     }
 
     /**
+     * 左旋转
+     */
+    protected void leftRotate() {
+        // 1、以当前节点的值创建新的节点
+        Node newNode = new Node(value);
+        // 2、设置新结点的左子树为当前节点的左子树
+        newNode.left = left;
+        // 3、设置新结点的右子树为当前节点的右子树的左子树
+        newNode.right = right.left;
+        // 4、把当前节点的值替换成右子节点的值
+        value = right.value;
+        // 5、把当前节点的右子树设置为当前节点右子树的右子树
+        right = right.right;
+        // 6、把当前节点的左子树设置为新结点
+        left = newNode;
+    }
+
+    /**
      * 添加节点
      *
      * @param node 新结点
@@ -63,6 +81,11 @@ public class Node {
             } else {
                 right.add(node);
             }
+        }
+
+        // 当添加完一个节点后，如果 (右子树的高度 - 左子树的高度) > 1，就进行左旋转
+        if ((rightHeight() - leftHeight()) > 1) {
+            leftRotate();
         }
     }
 
