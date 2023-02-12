@@ -64,6 +64,18 @@ public class Node {
     }
 
     /**
+     * 右旋转
+     */
+    protected void rightRotate() {
+        Node newNode = new Node(value);
+        newNode.right = right;
+        newNode.left = left.right;
+        value = left.value;
+        left = left.left;
+        right = newNode;
+    }
+
+    /**
      * 添加节点
      *
      * @param node 新结点
@@ -86,6 +98,10 @@ public class Node {
         // 当添加完一个节点后，如果 (右子树的高度 - 左子树的高度) > 1，就进行左旋转
         if ((rightHeight() - leftHeight()) > 1) {
             leftRotate();
+        }
+
+        if ((leftHeight() - rightHeight()) > 1) {
+            rightRotate();
         }
     }
 
