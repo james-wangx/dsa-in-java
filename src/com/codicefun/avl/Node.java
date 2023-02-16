@@ -97,10 +97,21 @@ public class Node {
 
         // 当添加完一个节点后，如果 (右子树的高度 - 左子树的高度) > 1，就进行左旋转
         if ((rightHeight() - leftHeight()) > 1) {
+            // 如果它的右子树的左子树高度 > 右子树的高度
+            if (right != null && right.leftHeight() > right.rightHeight()) {
+                // 对右子树右旋转
+                right.rightRotate();
+            }
             leftRotate();
+            return;
         }
 
         if ((leftHeight() - rightHeight()) > 1) {
+            // 如果它的左子树的右子树高度 > 左子树高度
+            if (left != null && left.rightHeight() > left.leftHeight()) {
+                // 对左子树左旋转
+                left.leftRotate();
+            }
             rightRotate();
         }
     }

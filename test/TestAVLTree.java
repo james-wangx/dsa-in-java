@@ -24,5 +24,10 @@ public class TestAVLTree {
         assert tree.height() == 3;
         assert tree.leftHeight() == 2;
         assert tree.rightHeight() == 2;
+
+        tree.createTree(new int[]{10, 11, 7, 6, 8, 9});
+        assert tree.height() == 3;
+        assert tree.leftHeight() == 2;
+        assert tree.rightHeight() == 2;
     }
 }
