@@ -1,6 +1,7 @@
 package com.codicefun.graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Graph {
     private final ArrayList<String> vertexList; // 存储顶点集合
@@ -54,7 +55,11 @@ public class Graph {
         return -1;
     }
 
-    // 深度优先遍历算法
+    /**
+     * 深度优先遍历算法
+     *
+     * @param i 当前节点索引
+     */
     public void dfs(int i) {
         // 首先我们访问该节点（输出）
         System.out.print(getValueByIndex(i) + "->");
@@ -82,6 +87,45 @@ public class Graph {
         for (int i = 0; i < vertexList.size(); i++) {
             if (!isVisited[i]) {
                 dfs(i);
+            }
+        }
+    }
+
+    // 对一个节点进行广度优先遍历
+    private void bfs(int i) {
+        int u; // 表示队列头结点对应的下标
+        int w; // 邻接节点下标
+        // 队列，记录节点访问的顺序
+        LinkedList<Integer> queue = new LinkedList<>();
+        // 访问节点，输出信息
+        System.out.print(getValueByIndex(i) + "->");
+        // 标记为已访问
+        isVisited[i] = true;
+        // 将节点加入队列
+        queue.addLast(i);
+
+        while (!queue.isEmpty()) {
+            // 取出队列头节点下标
+            u = queue.removeFirst();
+            // 得到第一个邻接节点的下标
+            w = getFirstNeighbor(u);
+            while (w != -1) {
+                if (!isVisited[w]) {
+                    System.out.print(getValueByIndex(w) + "->");
+                    isVisited[w] = true;
+                    queue.addLast(w);
+                } else {
+                    w = getNextNeighbor(u, w); // 体现出广度优先
+                }
+            }
+        }
+    }
+
+    // 遍历所有节点，都进行广度优先搜索
+    public void bfs() {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isVisited[i]) {
+                bfs(i);
             }
         }
     }
