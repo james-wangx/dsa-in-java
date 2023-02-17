@@ -22,4 +22,21 @@ public class TestGraph {
 
         graph.showGraph();
     }
+
+    @Test
+    public void testDfs() {
+        for (String str : vertexValue) {
+            graph.insertVertex(str);
+        }
+
+        // 添加边
+        // A-B A-C B-C B-D B-E
+        graph.insertEdge(0, 1, 1);
+        graph.insertEdge(0, 2, 1);
+        graph.insertEdge(1, 2, 1);
+        graph.insertEdge(1, 3, 1);
+        graph.insertEdge(1, 4, 1);
+
+        graph.dfs();
+    }
 }

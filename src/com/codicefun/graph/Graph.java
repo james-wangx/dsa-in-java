@@ -6,6 +6,7 @@ public class Graph {
     private final ArrayList<String> vertexList; // 存储顶点集合
     private final int[][] edges; // 存储图对应的邻接矩阵
     private int numOfEdges; // 表示边的数目
+    private boolean[] isVisited; // 记录哪个节点被访问
 
     /**
      * 构造器
@@ -17,6 +18,72 @@ public class Graph {
         edges = new int[n][n];
         vertexList = new ArrayList<>(n);
         numOfEdges = 0;
+        isVisited = new boolean[n];
+    }
+
+    /**
+     * 得到第一个邻接节点的下标
+     *
+     * @param index 当前节点的下标
+     * @return 如果存在就返回下一个邻接节点的下标，否则返回 -1
+     */
+    public int getFirstNeighbor(int index) {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (edges[index][i] > 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /**
+     * 根据前一个邻接节点和当前节点的下标来获取下一个邻接节点
+     *
+     * @param v1 前一个邻接节点
+     * @param v2 当前节点
+     * @return 如果存在就返回下一个邻接节点的下标，否则返回 -1
+     */
+    public int getNextNeighbor(int v1, int v2) {
+        for (int i = v2 + 1; i < vertexList.size(); i++) {
+            if (edges[v1][i] > 0) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    // 深度优先遍历算法
+    public void dfs(int i) {
+        // 首先我们访问该节点（输出）
+        System.out.print(getValueByIndex(i) + "->");
+        // 将该节点设置为已经访问过
+        isVisited[i] = true;
+        // 查找 i 的第一个邻接节点
+        int w = getFirstNeighbor(i);
+        // 如果 w 存在
+        while (w != -1) {
+            // 如果 w 未被访问
+            if (!isVisited[w]) {
+                // 从 w 开始 dfs
+                dfs(w);
+            } else {
+                // 如果 w 已经被访问过
+                w = getNextNeighbor(i, w);
+            }
+        }
+    }
+
+    /**
+     * 对 dfs 进行一个重载，遍历所有节点，并进行 dfs
+     */
+    public void dfs() {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isVisited[i]) {
+                dfs(i);
+            }
+        }
     }
 
     /**
