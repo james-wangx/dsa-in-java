@@ -1,5 +1,8 @@
-import com.codicefun.dynamic.KnapsackProblem;
+package com.codicefun.dynamic;
+
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestKnapsackProblem {
     int[] weight = {1, 4, 3};  // 物品的重量
@@ -9,12 +12,12 @@ public class TestKnapsackProblem {
     @Test
     public void testMySolve() {
         int res = KnapsackProblem.mySolve(weight, value, capacity);
-        assert res == 3500;
+        assertEquals(res, 3500);
     }
 
     @Test
     public void testSolve() {
         int res = KnapsackProblem.solve(weight, value, capacity);
-        assert res == 3500;
+        assertEquals(res, 3500);
     }
 }

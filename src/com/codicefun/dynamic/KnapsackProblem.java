@@ -53,7 +53,7 @@ public class KnapsackProblem {
         while (i > 0 && j > 0) { // 从 path 的最后开始找
             if (path[i][j] == 1) {
                 System.out.printf("第 %d 个物品放入背包\n", i);
-                j = weight[i - 1];
+                j -= weight[i - 1]; // find in remaining weight
             }
             i--;
         }
