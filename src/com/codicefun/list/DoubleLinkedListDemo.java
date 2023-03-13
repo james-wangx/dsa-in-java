@@ -1,4 +1,4 @@
-package com.codicefun.linkedlist;
+package com.codicefun.list;
 
 public class DoubleLinkedListDemo {
     public static void main(String[] args) {

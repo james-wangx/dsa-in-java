@@ -1,4 +1,4 @@
-package com.codicefun.linkedlist;
+package com.codicefun.list;
 
 import java.util.Stack;
 
