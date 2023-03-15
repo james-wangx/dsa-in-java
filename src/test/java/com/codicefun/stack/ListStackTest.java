@@ -5,7 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ListStackTest {
-    ListStack<String> stack = new ListStack<>();
+
+    public ListStack<String> stack = new ListStack<>();
+
+    @Test
+    public void shouldThrowStackEmptyException() {
+        assertThrows(StackEmptyException.class, () -> stack.pop());
+    }
 
     @Test
     public void testPush() {
@@ -17,11 +23,6 @@ public class ListStackTest {
         for (String str : stack) {
             assertEquals(str, String.valueOf(i * 10));
         }
-    }
-
-    @Test
-    public void shouldThrowStackEmptyException() {
-        assertThrows(StackEmptyException.class, () -> stack.pop());
     }
 
     @Test

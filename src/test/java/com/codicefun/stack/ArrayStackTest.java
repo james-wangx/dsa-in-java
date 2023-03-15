@@ -9,12 +9,24 @@ public class ArrayStackTest {
     public ArrayStack<String> stack = new ArrayStack<>(10);
 
     @Test
-    public void testPush() {
+    public void shouldThrowStackFullException() {
         for (int i = 1; i <= 10; i++) {
             stack.push(String.valueOf(i * 10));
         }
 
         assertThrows(StackFullException.class, () -> stack.push("1"));
+    }
+
+    @Test
+    public void shouldThrowStackEmptyException() {
+        assertThrows(StackEmptyException.class, () -> stack.pop());
+    }
+
+    @Test
+    public void testPush() {
+        for (int i = 1; i <= 10; i++) {
+            stack.push(String.valueOf(i * 10));
+        }
 
         int i = 1;
         for (String str : stack) {
@@ -31,7 +43,5 @@ public class ArrayStackTest {
         for (int i = 10; i >= 1; i--) {
             assertEquals(stack.pop(), String.valueOf(i * 10));
         }
-
-        assertThrows(StackEmptyException.class, () -> stack.pop());
     }
 }
