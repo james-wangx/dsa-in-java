@@ -1,6 +1,8 @@
 package com.codicefun.prim;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PrimAlgorithmTest {
     // max means that tow points are not connected

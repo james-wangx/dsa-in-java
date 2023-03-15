@@ -1,6 +1,7 @@
-package com.codicefun.huffmancode;
+import com.codicefun.huffmancode.HuffmanCode;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 

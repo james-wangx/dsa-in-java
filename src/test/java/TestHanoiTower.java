@@ -1,5 +1,8 @@
 import com.codicefun.dac.HanoiTower;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHanoiTower {
 

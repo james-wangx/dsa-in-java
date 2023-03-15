@@ -1,6 +1,8 @@
 import com.codicefun.binarysorttree.BinarySortTree;
 import com.codicefun.binarysorttree.Node;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBinarySortTree {
     public static final int[] arr = {7, 3, 10, 12, 5, 1, 9, 2};

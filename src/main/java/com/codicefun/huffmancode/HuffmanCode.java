@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 哈夫曼编码
  */
-class HuffmanCode {
+public class HuffmanCode {
     // 编码本
     private static HashMap<Byte, String> codeMap = new HashMap<>();
 
@@ -234,6 +234,7 @@ class HuffmanCode {
      * @param srcPath 源文件路径
      * @param desPath 解压文件路径
      */
+    @SuppressWarnings("unchecked")
     public static void unzipFile(String srcPath, String desPath) {
         try (FileInputStream fis = new FileInputStream(srcPath);
              ObjectInputStream ois = new ObjectInputStream(fis);

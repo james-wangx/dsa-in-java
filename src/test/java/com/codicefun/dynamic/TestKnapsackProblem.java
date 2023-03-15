@@ -1,8 +1,9 @@
 package com.codicefun.dynamic;
 
-import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestKnapsackProblem {
     int[] weight = {1, 4, 3};  // 物品的重量

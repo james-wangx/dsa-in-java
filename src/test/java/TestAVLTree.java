@@ -1,5 +1,7 @@
 import com.codicefun.avl.AVLTree;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestAVLTree {
     public static final int[] arr = {4, 3, 6, 5, 7, 8};
