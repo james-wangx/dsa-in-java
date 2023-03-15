@@ -14,6 +14,11 @@ public class ListStackTest {
     }
 
     @Test
+    public void shouldBeEmpty() {
+        assertTrue(stack.isEmpty());
+    }
+
+    @Test
     public void testPush() {
         for (int i = 1; i <= 10; i++) {
             stack.push(String.valueOf(i * 10));
@@ -34,5 +39,14 @@ public class ListStackTest {
         for (int i = 10; i >= 1; i--) {
             assertEquals(stack.pop(), String.valueOf(i * 10));
         }
+    }
+
+    @Test
+    public void testPeek() {
+        stack.push("first");
+        assertEquals(stack.peek(), "first");
+
+        stack.push("second");
+        assertEquals(stack.peek(), "second");
     }
 }

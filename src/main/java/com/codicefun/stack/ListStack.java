@@ -9,7 +9,7 @@ public class ListStack<E> implements Iterable<E> {
     public ListStack() {
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return top == null;
     }
 
@@ -29,10 +29,19 @@ public class ListStack<E> implements Iterable<E> {
             throw new StackEmptyException("Stack is empty!");
         }
 
-        E res = top.ele;
+        Node<E> node = top;
         top = top.next;
+        node.next = null;
 
-        return res;
+        return node.ele;
+    }
+
+    public E peek() {
+        if (isEmpty()) {
+            throw new StackEmptyException("Stack is empty!");
+        }
+
+        return top.ele;
     }
 
     private static class Node<E> {
