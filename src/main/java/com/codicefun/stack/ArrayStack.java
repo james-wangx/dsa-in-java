@@ -22,8 +22,7 @@ public class ArrayStack<E> implements Iterable<E> {
 
     public void push(E value) {
         if (isFull()) {
-            System.out.println("Stack is full!");
-            return;
+            throw new StackFullException("Stack is full!");
         }
 
         array[++top] = value;
@@ -32,21 +31,10 @@ public class ArrayStack<E> implements Iterable<E> {
     @SuppressWarnings("unchecked")
     public E pop() {
         if (isEmpty()) {
-            throw new RuntimeException("Stack is empty");
+            throw new StackEmptyException("Stack is empty!");
         }
 
         return (E) array[top--];
-    }
-
-    public void list() {
-        if (isEmpty()) {
-            System.out.println("栈空");
-        }
-
-        for (int i = top; i > -1; i--) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
     }
 
     private class StackIterator implements Iterator<E> {
