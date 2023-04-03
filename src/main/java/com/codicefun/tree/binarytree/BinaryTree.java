@@ -1,5 +1,10 @@
 package com.codicefun.tree.binarytree;
 
+/**
+ * 二叉树
+ *
+ * @param <E> 数据类型
+ */
 public class BinaryTree<E> {
     private Node<E> root;
 
@@ -19,24 +24,30 @@ public class BinaryTree<E> {
      * 先续遍历方法的重载（从 root 开始），并打印换行符
      */
     public void printPreorder() {
-        printPreorder(root);
-        System.out.println();
+        if (root != null) {
+            printPreorder(root);
+            System.out.println();
+        }
     }
 
     /**
      * 中续遍历方法的重载（从 root 开始），并打印换行符
      */
     public void printInorder() {
-        printInorder(root);
-        System.out.println();
+        if (root != null) {
+            printInorder(root);
+            System.out.println();
+        }
     }
 
     /**
      * 后续遍历方法的重载（从 root 开始），并打印换行符
      */
     public void printPostorder() {
-        printPostorder(root);
-        System.out.println();
+        if (root != null) {
+            printPostorder(root);
+            System.out.println();
+        }
     }
 
     /**
@@ -46,7 +57,11 @@ public class BinaryTree<E> {
      * @return 找到的节点
      */
     public Node<E> searchPreorder(E data) {
-        return searchPreorder(root, data);
+        if (root != null) {
+            return searchPreorder(root, data);
+        }
+
+        return null;
     }
 
     /**
@@ -56,7 +71,11 @@ public class BinaryTree<E> {
      * @return 找到的节点
      */
     public Node<E> searchInorder(E data) {
-        return searchInorder(root, data);
+        if (root != null ) {
+            return searchInorder(root, data);
+        }
+
+        return null;
     }
 
     /**
@@ -66,7 +85,11 @@ public class BinaryTree<E> {
      * @return 找到的节点
      */
     public Node<E> searchPostorder(E data) {
-        return searchPostorder(root, data);
+        if (root != null) {
+            return searchPostorder(root, data);
+        }
+
+        return null;
     }
 
     /**
@@ -202,5 +225,13 @@ public class BinaryTree<E> {
         }
 
         return null;
+    }
+
+    public void deleteNode(E data) {
+        if (data.equals(root.getData())) {
+            root = null;
+        } else {
+            root.deleteNode(data);
+        }
     }
 }

@@ -60,4 +60,14 @@ class BinaryTreeTest {
         assertEquals(node1, tree.searchPostorder(1));
         assertNull(tree.searchPostorder(9));
     }
+
+    @Test
+    public void testDeleteNode() {
+        tree.deleteNode(4);
+        tree.printPreorder();
+        tree.deleteNode(3);
+        tree.printPreorder();
+        tree.deleteNode(1);
+        tree.printPreorder();
+    }
 }

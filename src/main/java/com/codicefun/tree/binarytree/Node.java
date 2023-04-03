@@ -37,6 +37,26 @@ public class Node<E> {
         this.right = right;
     }
 
+    public void deleteNode(E data) {
+        if (left != null && left.data.equals(data)) {
+            left = null;
+            return;
+        }
+
+        if (right != null && right.data.equals(data)) {
+            right = null;
+            return;
+        }
+
+        if (left != null) {
+            left.deleteNode(data);
+        }
+
+        if (right != null) {
+            right.deleteNode(data);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
