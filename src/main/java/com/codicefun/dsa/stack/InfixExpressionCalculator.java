@@ -35,11 +35,11 @@ public class InfixExpressionCalculator {
             } else {
                 num.append(ch);
                 if (i == exp.length() - 1) {
-                    numStack.push(new Integer(num.toString()));
+                    numStack.push(Integer.valueOf(num.toString()));
                     break;
                 }
                 if (isOpe(exp.charAt(i + 1))) {
-                    numStack.push(new Integer(num.toString()));
+                    numStack.push(Integer.valueOf(num.toString()));
                     num = new StringBuilder();
                 }
             }
@@ -72,20 +72,12 @@ public class InfixExpressionCalculator {
     private int calc(int num1, int num2, int ope) {
         int res = 0;
         switch (ope) {
-            case '+':
-                res = num1 + num2;
-                break;
-            case '-':
-                res = num2 - num1; // 注意顺序
-                break;
-            case '*':
-                res = num1 * num2;
-                break;
-            case '/':
-                res = num2 / num1;
-                break;
-            default:
-                break;
+            case '+' -> res = num1 + num2;
+            case '-' -> res = num2 - num1; // 注意顺序
+            case '*' -> res = num1 * num2;
+            case '/' -> res = num2 / num1;
+            default -> {
+            }
         }
 
         return res;
