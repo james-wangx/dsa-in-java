@@ -24,7 +24,7 @@ public class InsertionSort implements Sort {
                 arr[insertIndex + 1] = arr[insertIndex];
                 insertIndex--;
             }
-            if (insertIndex + 1 != i) {
+            if (insertIndex + 1 != i) { // 解决索引为 -1 和元素相等的情况
                 arr[insertIndex + 1] = insertVal;
             }
         }
