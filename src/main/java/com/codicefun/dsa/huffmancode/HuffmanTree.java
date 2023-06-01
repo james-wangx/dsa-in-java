@@ -7,6 +7,7 @@ import java.util.List;
  * 哈夫曼树
  */
 public class HuffmanTree {
+
     /**
      * 生成哈夫曼树
      *

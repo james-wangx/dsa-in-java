@@ -4,6 +4,7 @@ package com.codicefun.dsa.huffmancode;
  * 节点
  */
 public class Node implements Comparable<Node> {
+
     public Byte data; // 字节数据
     public int weights; // 权重
     public Node left; // 左节点
@@ -24,4 +25,5 @@ public class Node implements Comparable<Node> {
         // 升序排序
         return this.weights - o.weights;
     }
+
 }

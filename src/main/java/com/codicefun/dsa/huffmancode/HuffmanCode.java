@@ -9,8 +9,9 @@ import java.util.List;
  * 哈夫曼编码
  */
 public class HuffmanCode {
+
     // 编码本
-    private static HashMap<Byte, String> codeMap = new HashMap<>();
+    private static HashMap<Byte, String> codeMap;
 
     public static HashMap<Byte, String> getCodeMap() {
         return codeMap;
@@ -110,11 +111,17 @@ public class HuffmanCode {
      * @return 编码后的字节数组
      */
     private static byte[] code(byte[] bytes) {
+        // 2、计算字节出现次数（频率）
         HashMap<Byte, Integer> frequency = getByteFrequency(bytes);
+        // 3、根据频率生成节点（字节为 data，频率为 weights 即权重）
         List<Node> nodeList = getNodeList(frequency);
+        // 4、生成哈夫曼树，得到根节点
         Node rootNode = HuffmanTree.createTree(nodeList);
+        // 5、生成编码本
+        codeMap = new HashMap<>();
         createCodeMap(rootNode, "", new StringBuilder());
 
+        // 6、获得编码，并返回
         return getCode(bytes);
     }
 
@@ -127,17 +134,8 @@ public class HuffmanCode {
     public static byte[] code(String content) {
         // 1、将文本转为字节数组
         byte[] bytes = content.getBytes();
-        // 2、计算字节出现次数（频率）
-        HashMap<Byte, Integer> frequency = getByteFrequency(bytes);
-        // 3、根据频率生成节点（字节为 data，频率为 weights 即权重）
-        List<Node> nodeList = getNodeList(frequency);
-        // 4、生成哈夫曼树，得到根节点
-        Node rootNode = HuffmanTree.createTree(nodeList);
-        // 5、生成编码本
-        createCodeMap(rootNode, "", new StringBuilder());
 
-        // 6、获得编码，并返回
-        return getCode(bytes);
+        return code(bytes);
     }
 
     /**
@@ -209,7 +207,7 @@ public class HuffmanCode {
      * @param srcPath 源文件路径
      * @param desPath 压缩路径
      */
-    public static void zipFile(String srcPath, String desPath) {
+    public static void compress(String srcPath, String desPath) {
         try (FileInputStream fis = new FileInputStream(srcPath);
              FileOutputStream fos = new FileOutputStream(desPath);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -218,12 +216,12 @@ public class HuffmanCode {
                 byte[] codes = code(buf);
                 oos.writeObject(codes);
                 oos.writeObject(codeMap);
-                System.out.println("zip success");
+                System.out.println("compress success");
             } else {
-                System.out.println("zip fail");
+                System.out.println("compress fail");
             }
         } catch (IOException e) {
-            System.out.println("zip fail");
+            System.out.println("compress fail");
             e.printStackTrace();
         }
     }
@@ -235,7 +233,7 @@ public class HuffmanCode {
      * @param desPath 解压文件路径
      */
     @SuppressWarnings("unchecked")
-    public static void unzipFile(String srcPath, String desPath) {
+    public static void decompress(String srcPath, String desPath) {
         try (FileInputStream fis = new FileInputStream(srcPath);
              ObjectInputStream ois = new ObjectInputStream(fis);
              FileWriter fw = new FileWriter(desPath);
@@ -244,10 +242,11 @@ public class HuffmanCode {
             codeMap = (HashMap<Byte, String>) ois.readObject();
             String content = decode(codes);
             br.write(content);
-            System.out.println("unzip success");
+            System.out.println("decompress success");
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("unzip fail");
+            System.out.println("decompress fail");
             e.printStackTrace();
         }
     }
+
 }
