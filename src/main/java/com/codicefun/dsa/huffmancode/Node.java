@@ -6,11 +6,11 @@ package com.codicefun.dsa.huffmancode;
 public class Node implements Comparable<Node> {
 
     public Byte data; // 字节数据
-    public int weights; // 权重
+    public Integer weights; // 权重
     public Node left; // 左节点
     public Node right; // 右节点
 
-    public Node(Byte data, int weights) {
+    public Node(Byte data, Integer weights) {
         this.data = data;
         this.weights = weights;
     }

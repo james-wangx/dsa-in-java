@@ -3,8 +3,20 @@ package com.codicefun.dsa.list;
 import java.util.Iterator;
 
 public class SinglyLinkedList<E> implements Iterable<E> {
+
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+
+        Node(E item) {
+            this.item = item;
+            this.next = null;
+        }
+    }
+
     private Node<E> first;
     private int size;
+
     public SinglyLinkedList() {
     }
 
@@ -57,16 +69,6 @@ public class SinglyLinkedList<E> implements Iterable<E> {
         return new ListIterator();
     }
 
-    private static class Node<E> {
-        E item;
-        Node<E> next;
-
-        Node(E item) {
-            this.item = item;
-            this.next = null;
-        }
-    }
-
     private class ListIterator implements Iterator<E> {
         Node<E> pos = first;
 
@@ -82,4 +84,5 @@ public class SinglyLinkedList<E> implements Iterable<E> {
             return cur.item;
         }
     }
+
 }

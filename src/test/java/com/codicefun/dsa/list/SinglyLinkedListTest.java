@@ -1,11 +1,12 @@
 package com.codicefun.dsa.list;
 
-import com.codicefun.dsa.list.SinglyLinkedList;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SinglyLinkedListTest {
+
     SinglyLinkedList<String> list = new SinglyLinkedList<>();
 
     @Test
@@ -47,4 +48,5 @@ public class SinglyLinkedListTest {
 
         assertEquals(list.size(), 10);
     }
+
 }

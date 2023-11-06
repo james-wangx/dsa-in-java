@@ -29,4 +29,5 @@ public class HuffmanTree {
 
         return nodeList.get(0);
     }
+
 }
