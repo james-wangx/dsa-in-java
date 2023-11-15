@@ -60,8 +60,37 @@ public class SinglyLinkedList<E> implements Iterable<E> {
         return false;
     }
 
+    public void reverse() {
+        Node<E> prev = null;
+        Node<E> curr = first;
+
+        while (curr != null) {
+            Node<E> next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        first = prev;
+    }
+
     public int size() {
         return size;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append("{");
+
+        Node<E> curr = first;
+        while (curr != null) {
+            res.append(curr.item).append("->");
+            curr = curr.next;
+        }
+        res.append("null").append("}");
+
+        return res.toString();
     }
 
     @Override
@@ -79,9 +108,9 @@ public class SinglyLinkedList<E> implements Iterable<E> {
 
         @Override
         public E next() {
-            Node<E> cur = pos;
+            Node<E> curr = pos;
             pos = pos.next;
-            return cur.item;
+            return curr.item;
         }
     }
 

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SinglyLinkedListTest {
 
-    SinglyLinkedList<String> list = new SinglyLinkedList<>();
+    private final SinglyLinkedList<String> list = new SinglyLinkedList<>();
 
     @Test
     public void testAdd() {
@@ -37,6 +37,20 @@ public class SinglyLinkedListTest {
 
         for (int i = 10; i >= 1; i--) {
             assertTrue(list.remove(String.valueOf(i * 10)));
+        }
+    }
+
+    @Test
+    public void testReverse() {
+        for (int i = 1; i <= 10; i++) {
+            list.add(String.valueOf(i * 10));
+        }
+
+        list.reverse();
+
+        int i = 10;
+        for (String item: list) {
+            assertEquals(item, String.valueOf(i-- * 10));
         }
     }
 
