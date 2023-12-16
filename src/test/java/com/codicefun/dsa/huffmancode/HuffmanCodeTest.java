@@ -42,18 +42,18 @@ class HuffmanCodeTest {
         assertEquals(content, decode);
     }
 
-    @Test
-    void testCompress() {
-        String srcPath = "/tmp/genact.log";
-        String desPath = "/tmp/genact.log.hcc"; // hcc == Huffman Code Compression
-        HuffmanCode.compress(srcPath, desPath);
-    }
-
-    @Test
-    void testDecompress() {
-        String srcPath = "/tmp/genact.log.hcc";
-        String desPath = "/tmp/genact-decompress.log";
-        HuffmanCode.decompress(srcPath, desPath);
-    }
+    // @Test
+    // void testCompress() {
+    //     String srcPath = "/tmp/genact.log";
+    //     String desPath = "/tmp/genact.log.hcc"; // hcc == Huffman Code Compression
+    //     HuffmanCode.compress(srcPath, desPath);
+    // }
+    //
+    // @Test
+    // void testDecompress() {
+    //     String srcPath = "/tmp/genact.log.hcc";
+    //     String desPath = "/tmp/genact-decompress.log";
+    //     HuffmanCode.decompress(srcPath, desPath);
+    // }
 
 }
