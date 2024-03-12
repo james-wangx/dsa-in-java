@@ -2,8 +2,8 @@ package com.codicefun.dsa.kruskal;
 
 import java.util.Arrays;
 
-import com.codicefun.dsa.kruskal.EData;
-import com.codicefun.dsa.kruskal.KruskalCase;
+import com.codicefun.dsa.algorithm.kruskal.EData;
+import com.codicefun.dsa.algorithm.kruskal.KruskalCase;
 import org.junit.jupiter.api.Test;
 
 public class KruskalCaseTest {

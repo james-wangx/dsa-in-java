@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import com.codicefun.dsa.greedy.GreedyAlgorithm;
+import com.codicefun.dsa.algorithm.greedy.GreedyAlgorithm;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

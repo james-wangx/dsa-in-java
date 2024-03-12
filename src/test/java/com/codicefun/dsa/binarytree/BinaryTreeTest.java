@@ -1,7 +1,7 @@
 package com.codicefun.dsa.binarytree;
 
-import com.codicefun.dsa.tree.binarytree.BinaryTree;
-import com.codicefun.dsa.tree.binarytree.Node;
+import com.codicefun.dsa.datastructure.tree.binarytree.BinaryTree;
+import com.codicefun.dsa.datastructure.tree.binarytree.Node;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

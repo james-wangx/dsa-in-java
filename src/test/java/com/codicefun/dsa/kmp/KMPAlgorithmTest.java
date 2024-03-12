@@ -1,7 +1,7 @@
 package com.codicefun.dsa.kmp;
 
 
-import com.codicefun.dsa.kmp.KMPAlgorithm;
+import com.codicefun.dsa.algorithm.kmp.KMPAlgorithm;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

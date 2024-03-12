@@ -1,7 +1,7 @@
 package com.codicefun.dsa.stack;
 
-import com.codicefun.dsa.stack.ListStack;
-import com.codicefun.dsa.stack.StackEmptyException;
+import com.codicefun.dsa.datastructure.stack.ListStack;
+import com.codicefun.dsa.datastructure.stack.StackEmptyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

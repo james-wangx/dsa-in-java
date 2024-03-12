@@ -1,7 +1,7 @@
 package com.codicefun.dsa.prim;
 
-import com.codicefun.dsa.prim.MGraph;
-import com.codicefun.dsa.prim.MST;
+import com.codicefun.dsa.algorithm.prim.MGraph;
+import com.codicefun.dsa.algorithm.prim.MST;
 import org.junit.jupiter.api.Test;
 
 public class PrimAlgorithmTest {

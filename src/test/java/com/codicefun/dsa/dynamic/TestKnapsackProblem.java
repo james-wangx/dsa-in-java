@@ -1,7 +1,7 @@
 package com.codicefun.dsa.dynamic;
 
 
-import com.codicefun.dsa.dynamic.KnapsackProblem;
+import com.codicefun.dsa.algorithm.dynamic.KnapsackProblem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

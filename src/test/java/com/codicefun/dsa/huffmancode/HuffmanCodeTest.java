@@ -1,5 +1,6 @@
 package com.codicefun.dsa.huffmancode;
 
+import com.codicefun.dsa.algorithm.huffmancode.HuffmanCode;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;

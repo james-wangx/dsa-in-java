@@ -1,6 +1,6 @@
 package com.codicefun.dsa.stack;
 
-import com.codicefun.dsa.stack.InfixExpressionCalculator;
+import com.codicefun.dsa.datastructure.stack.InfixExpressionCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

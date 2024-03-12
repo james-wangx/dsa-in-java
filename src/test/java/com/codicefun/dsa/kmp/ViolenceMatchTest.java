@@ -1,6 +1,6 @@
 package com.codicefun.dsa.kmp;
 
-import com.codicefun.dsa.kmp.ViolenceMatch;
+import com.codicefun.dsa.algorithm.kmp.ViolenceMatch;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
