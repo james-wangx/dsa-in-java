@@ -136,7 +136,7 @@ public class ResizingArrayQueue<E> implements Iterable<E> {
 
     // an array iterator, from first to last
     private class ArrayIterator implements Iterator<E> {
-        private int i;
+        private int i = 0;
 
         @Override
         public boolean hasNext() {
@@ -145,7 +145,7 @@ public class ResizingArrayQueue<E> implements Iterable<E> {
 
         @Override
         public E next() {
-            if (isEmpty()) throw new NoSuchElementException();
+            if (!hasNext()) throw new NoSuchElementException();
 
             return q[(i++ + first) % q.length];
         }
