@@ -1,8 +1,5 @@
-package com.codicefun.dsa.sort;
+package com.codicefun.dsa.algorithm.sort;
 
-import com.codicefun.dsa.algorithm.sort.BubbleSort;
-import com.codicefun.dsa.algorithm.sort.InsertionSort;
-import com.codicefun.dsa.algorithm.sort.Sort;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
