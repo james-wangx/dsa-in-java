@@ -7,15 +7,27 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class LinkedStackTest {
+class StackTest {
 
     @Test
     void Push_Normal_SizeIsEqual() {
-        LinkedStack<Integer> stack = new LinkedStack<>();
-        final int n = 10;
+        Stack<Integer> stack = new Stack<>();
+        final int n = 7;
 
         for (int i = 0; i < n; i++) {
-            stack.push(n);
+            stack.push(i);
+        }
+
+        assertEquals(n, stack.size());
+    }
+
+    @Test
+    void Push_OutOfCapacity_SizeIsEqual() {
+        Stack<Integer> stack = new Stack<>();
+        final int n = 100;
+
+        for (int i = 0; i < n; i++) {
+            stack.push(i);
         }
 
         assertEquals(n, stack.size());
@@ -23,8 +35,8 @@ class LinkedStackTest {
 
     @Test
     void Pop_Normal_ItemAndSizeIsEqual() {
-        LinkedStack<Integer> stack = new LinkedStack<>();
-        final int n = 10;
+        Stack<Integer> stack = new Stack<>();
+        final int n = 7;
 
         for (int i = 0; i < n; i++) {
             stack.push(i);
@@ -39,14 +51,14 @@ class LinkedStackTest {
 
     @Test
     void Pop_More_Underflow() {
-        LinkedStack<Integer> stack = new LinkedStack<>();
-        final int n = 10;
+        Stack<Integer> stack = new Stack<>();
+        final int n = 7;
 
         for (int i = 0; i < n; i++) {
             stack.push(i);
         }
 
-        for (int i = n - 1; i >= 0; i--) {
+        for (int i = 0; i < n; i++) {
             stack.pop();
         }
 
@@ -55,8 +67,8 @@ class LinkedStackTest {
 
     @Test
     void Peek_Normal_ItemIsEqual() {
-        LinkedStack<Integer> stack = new LinkedStack<>();
-        final int n = 10;
+        Stack<Integer> stack = new Stack<>();
+        final int n = 7;
 
         for (int i = 0; i < n; i++) {
             stack.push(i);
