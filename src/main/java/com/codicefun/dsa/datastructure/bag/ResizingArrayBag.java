@@ -4,6 +4,17 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * The {@code ResizingArrayBag} class represents a bag (or multiset) of
+ * generic items. It supports insertion and iterating over the
+ * items in arbitrary order.
+ * <p>
+ * This implementation uses a resizing array.
+ * See {@link LinkedBag} for a version that uses a singly linked list.
+ * The <em>add</em> operation takes constant amortized time; the
+ * <em>isEmpty</em>, and <em>size</em> operations
+ * take constant time. Iteration takes time proportional to the number of items.
+ */
 public class ResizingArrayBag<E> implements Iterable<E> {
 
     private static final int INIT_CAPACITY = 8;

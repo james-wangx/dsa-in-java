@@ -4,24 +4,28 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * The {@code LinkedBag} class represents a bag (or multiset) of
+ * The {@code Bag} class represents a bag (or multiset) of
  * generic items. It supports insertion and iterating over the
  * items in arbitrary order.
  * <p>
- * This implementation uses a singly linked list with a non-static nested class Node.
- * See {@link Bag} for a version that uses a static nested class.
+ * This implementation uses a singly linked list with a static nested class Node.
+ * See {@link LinkedBag} for the version from the
+ * textbook that uses a non-static nested class.
+ * See {@link ResizingArrayBag} for a version that uses a resizing array.
  * The <em>add</em>, <em>isEmpty</em>, and <em>size</em> operations
  * take constant time. Iteration takes time proportional to the number of items.
+ *
+ * @param <E> the generic type of each item in this bag
  */
-public class LinkedBag<E> implements Iterable<E> {
+public class Bag<E> implements Iterable<E> {
 
-    private Node first; // beginning of bag
-    private int n;      // number of elements in bag
+    private Node<E> first;  // beginning of bag
+    private int n;          // number of elements
 
     /**
-     * Initializes an empty bag.
+     * Initializes an empty bag
      */
-    public LinkedBag() {
+    public Bag() {
         first = null;
         n = 0;
     }
@@ -44,9 +48,14 @@ public class LinkedBag<E> implements Iterable<E> {
         return n;
     }
 
+    /**
+     * Adds the element to this bag.
+     *
+     * @param element the element to add
+     */
     public void add(E element) {
-        Node oldFirst = first;
-        first = new Node();
+        Node<E> oldFirst = first;
+        first = new Node<>();
         first.element = element;
         first.next = oldFirst;
         n++;
@@ -63,16 +72,16 @@ public class LinkedBag<E> implements Iterable<E> {
     }
 
     // helper linked list class
-    private class Node {
+    private static class Node<E> {
         private E element;
-        private Node next;
+        private Node<E> next;
     }
 
     // a linked-list iterator
     private class LinkedIterator implements Iterator<E> {
-        private Node current;
+        private Node<E> current;
 
-        public LinkedIterator(Node first) {
+        public LinkedIterator(Node<E> first) {
             current = first;
         }
 
@@ -91,4 +100,5 @@ public class LinkedBag<E> implements Iterable<E> {
             return element;
         }
     }
+
 }
